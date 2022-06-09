@@ -13,9 +13,9 @@ import torch
 import numpy as np
 from skimage.io import imread, imsave
 from skimage.transform import estimate_transform, warp
-from .utils import read_info
-from .model.prnet import PRNet
-from .utils.cython.render import render_cy
+from FMA_3D.utils import read_info
+from FMA_3D.model.prnet import PRNet
+from FMA_3D.utils.cython.render import render_cy
 
 class PRN:
     """Process of PRNet.
