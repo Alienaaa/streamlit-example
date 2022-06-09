@@ -17,7 +17,7 @@ from FMA_3D.utils import read_info
 from FMA_3D.model.prnet import PRNet
 # from FMA_3D.utils.cython.render import render_cy
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device("cpu")
 class PRN:
     """Process of PRNet.
     based on:
