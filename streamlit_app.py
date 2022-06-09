@@ -3,6 +3,7 @@ import altair as alt
 import math
 import pandas as pd
 import streamlit as st
+from FMA_3D.face_masker import FaceMasker
 
 """
 # Welcome to Streamlit!
