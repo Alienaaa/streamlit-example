@@ -8,4 +8,5 @@ torchvision==0.9.1+cpu
 altair
 pandas
 streamlit
+skimage
 opencv-python-headless==4.6.0.66
