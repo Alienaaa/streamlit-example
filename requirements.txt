@@ -9,4 +9,5 @@ altair
 pandas
 streamlit
 scikit_image
+cython
 opencv-python-headless==4.6.0.66
