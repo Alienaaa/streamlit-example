@@ -14,6 +14,7 @@ import numpy as np
 from skimage.io import imread, imsave
 from skimage.transform import estimate_transform, warp
 from FMA_3D.utils import read_info
+from FMA_3D.utils import render
 from FMA_3D.model.prnet import PRNet
 # from FMA_3D.utils.cython.render import render_cy
 
@@ -131,9 +132,9 @@ class FaceMasker:
     # you can speed it up by a c++ version.
     def render(self, vertices, new_colors, h, w):
         vis_colors = np.ones((vertices.shape[0], 1))
-        face_mask = render_texture(vertices.T, vis_colors.T, self.prn.triangles.T, h, w, c=1).astype(np.uint8)
+        face_mask = render.render_texture(vertices.T, vis_colors.T, self.prn.triangles.T, h, w, c=1).astype(np.uint8)
         face_mask = np.squeeze(face_mask > 0)
-        new_image = render_texture(vertices.T, new_colors.T, self.prn.triangles.T, h, w, c=3)
+        new_image = render.render_texture(vertices.T, new_colors.T, self.prn.triangles.T, h, w, c=3)
         return face_mask, new_image
         
     def add_mask_one(self, image_path, face_lms, template_name, masked_face_path):
