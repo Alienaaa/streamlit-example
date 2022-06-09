@@ -10,4 +10,6 @@ pandas
 streamlit
 scikit_image
 cython
+numpy
+setuptools
 opencv-python-headless==4.6.0.66
