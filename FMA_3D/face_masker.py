@@ -168,7 +168,8 @@ class FaceMasker:
         new_image = image * (1 - face_mask[:, :, np.newaxis]) + new_image * face_mask[:, :, np.newaxis]
         new_image = np.clip(new_image, -1, 1) #must clip to (-1, 1)!
 
-        imsave(masked_face_path, new_image) 
+        # imsave(masked_face_path, new_image)
+        return new_image
 
     def get_vertices(self, face_lms, image):
         """Get vertices

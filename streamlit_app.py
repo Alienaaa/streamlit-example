@@ -15,8 +15,34 @@ forums](https://discuss.streamlit.io).
 
 In the meantime, below is an example of what you can do with just a few lines of code:
 """
+st.header("Adding a mask on a non-masked face image using FMA-3D")
+st.write("Choose a non-masked face image and get a masked one:")
+
+uploaded_file = st.file_uploader("Choose an image...")
 
 
+if uploaded_file is not None:
+    st.image(uploaded_file, caption='Input Image', use_column_width=True)
+
+
+    is_aug = False
+    image_path = 'FMA_3D/Data/test-data/test1.jpg'
+    face_lms_file = 'FMA_3D/Data/test-data/test1_landmark.txt'
+    template_name = '7.png'
+    masked_face_path = 'test1_mask1.jpg'
+    face_lms_str = open(face_lms_file).readline().strip().split(' ')
+    face_lms = [float(num) for num in face_lms_str]
+    face_masker = FaceMasker(is_aug)
+    result_img = face_masker.add_mask_one(image_path, face_lms, template_name, masked_face_path)
+    # src_image = load_image(uploaded_file)
+    # image = Image.open(uploaded_file)	
+	
+    
+    #st.write(os.listdir())
+    # im = imgGen2(uploaded_file)	
+    st.image(im, caption='Masked Image', use_column_width=True) 	
+
+"""
 with st.echo(code_location='below'):
     total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
     num_turns = st.slider("Number of turns in spiral", 1, 100, 9)
@@ -37,3 +63,4 @@ with st.echo(code_location='below'):
     st.altair_chart(alt.Chart(pd.DataFrame(data), height=500, width=500)
         .mark_circle(color='#0068c9', opacity=0.5)
         .encode(x='x:Q', y='y:Q'))
+"""
