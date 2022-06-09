@@ -15,7 +15,7 @@ from skimage.io import imread, imsave
 from skimage.transform import estimate_transform, warp
 from FMA_3D.utils import read_info
 from FMA_3D.model.prnet import PRNet
-from FMA_3D.utils.cython.render import render_cy
+# from FMA_3D.utils.cython.render import render_cy
 
 class PRN:
     """Process of PRNet.
@@ -161,7 +161,8 @@ class FaceMasker:
         new_colors = self.prn.get_colors_from_texture(new_texture)
         
         # render
-        face_mask, new_image = render_cy(np.ascontiguousarray(vertices.T), np.ascontiguousarray(new_colors.T), np.ascontiguousarray(self.prn.triangles.T.astype(np.int64)), h, w)
+        # face_mask, new_image = render_cy(np.ascontiguousarray(vertices.T), np.ascontiguousarray(new_colors.T), np.ascontiguousarray(self.prn.triangles.T.astype(np.int64)), h, w)
+        face_mask, new_image = render(np.ascontiguousarray(vertices.T), np.ascontiguousarray(new_colors.T), h, w)
         face_mask = np.squeeze(np.floor(face_mask) > 0)
         tmp = new_image * face_mask[:, :, np.newaxis]
         new_image = image * (1 - face_mask[:, :, np.newaxis]) + new_image * face_mask[:, :, np.newaxis]
