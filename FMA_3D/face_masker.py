@@ -164,7 +164,7 @@ class FaceMasker:
         
         # render
         # face_mask, new_image = render_cy(np.ascontiguousarray(vertices.T), np.ascontiguousarray(new_colors.T), np.ascontiguousarray(self.prn.triangles.T.astype(np.int64)), h, w)
-        face_mask, new_image = render(np.ascontiguousarray(vertices.T), np.ascontiguousarray(new_colors.T), h, w)
+        face_mask, new_image = self.render(np.ascontiguousarray(vertices.T), np.ascontiguousarray(new_colors.T), h, w)
         face_mask = np.squeeze(np.floor(face_mask) > 0)
         tmp = new_image * face_mask[:, :, np.newaxis]
         new_image = image * (1 - face_mask[:, :, np.newaxis]) + new_image * face_mask[:, :, np.newaxis]
