@@ -25,8 +25,8 @@ class PRN:
     def __init__(self, model_path):
         self.resolution = 256
         self.MaxPos = self.resolution*1.1        
-        self.face_ind = np.loadtxt('Data/uv-data/face_ind.txt').astype(np.int32)
-        self.triangles = np.loadtxt('Data/uv-data/triangles.txt').astype(np.int32)
+        self.face_ind = np.loadtxt('FMA_3D/Data/uv-data/face_ind.txt').astype(np.int32)
+        self.triangles = np.loadtxt('FMA_3D/Data/uv-data/triangles.txt').astype(np.int32)
         self.net = PRNet(3, 3)
         state_dict = torch.load(model_path)
         self.net.load_state_dict(state_dict)
@@ -95,9 +95,9 @@ class FaceMasker:
         Args:
             is_aug(bool): whether or not to add some augmentaion operation on the mask.
         """
-        self.uv_face_path = 'Data/uv-data/uv_face_mask.png'
-        self.mask_template_folder = 'Data/mask-data'
-        self.prn = PRN('model/prnet.pth')
+        self.uv_face_path = 'FMA_3D/Data/uv-data/uv_face_mask.png'
+        self.mask_template_folder = 'FMA_3D/Data/mask-data'
+        self.prn = PRN('FMA_3D/model/prnet.pth')
         self.template_name2ref_texture_src, self.template_name2uv_mask_src = self.get_ref_texture_src()
         self.is_aug = is_aug
 
